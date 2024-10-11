@@ -12,7 +12,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",  # Local development
-        "https://{your-app-name}.vercel.app"  # Replace with your Vercel URL
+        "https://userreseearchather.netlify.app/"  # Replace with your Vercel URL
     ],  # Allow your Next.js frontend
     allow_credentials=True,
     allow_methods=["*"],
