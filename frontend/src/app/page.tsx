@@ -1,8 +1,6 @@
-// app/page.tsx
 'use client';
 
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowUpOnSquareIcon } from '@heroicons/react/24/solid';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
@@ -13,10 +11,15 @@ interface AnalysisResults {
 }
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
   const [text, setText] = useState('');
   const [results, setResults] = useState<AnalysisResults | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -42,6 +45,10 @@ export default function Home() {
       setLoading(false);
     }
   };
+
+  if (!isClient) {
+    return null; // or a loading spinner
+  }
 
   return (
     <main className="container mx-auto px-4 py-8">
